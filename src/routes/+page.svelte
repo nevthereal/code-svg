@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { codeToHtml } from 'shiki';
-	import { toPng } from 'html-to-image';
+	import { codeToHtml, type BuiltinLanguage } from 'shiki';
 
 	let code = $state('console.log("hi")');
 	let lang = $state('typescript');
@@ -12,7 +11,7 @@
 		})
 	);
 
-	const langs = ['js', 'typescript', 'svelte', 'tsx', 'jsx'];
+	const langs: BuiltinLanguage[] = ['js', 'typescript', 'svelte', 'tsx', 'jsx'];
 </script>
 
 <main class="p-6">
