@@ -8,8 +8,7 @@
 	const htmlPromise = $derived(
 		codeToHtml(code, {
 			lang: lang,
-			theme: 'github-dark-default',
-			colorReplacements: { '#0d1117': 'transparent' }
+			theme: 'github-dark-default'
 		})
 	);
 
