@@ -3,6 +3,7 @@
 
 	let code = $state('console.log("hi")');
 	let lang = $state('typescript');
+	let textSize = $state('base');
 
 	const htmlPromise = $derived(
 		codeToHtml(code, {
@@ -12,6 +13,7 @@
 	);
 
 	const langs: BuiltinLanguage[] = ['js', 'typescript', 'svelte', 'tsx', 'jsx'];
+	const sizes = ['xs', 'sm', 'md', 'base', 'lg', 'xl', '2xl', '3xl'];
 </script>
 
 <main class="p-6">
@@ -26,9 +28,14 @@
 				<option value={lang}>{lang}</option>
 			{/each}
 		</select>
+		<select name="language" id="language-selector" class="mb-auto rounded-xl" bind:value={textSize}>
+			{#each sizes as size}
+				<option value={size}>{size}</option>
+			{/each}
+		</select>
 	</div>
 
-	<div class="mt-4 max-w-3xl rounded text-2xl">
+	<div class={`mt-4 rounded-xl bg-[#0D1117] p-4 text-${textSize}`}>
 		{#await htmlPromise then html}
 			{@html html}
 		{/await}
