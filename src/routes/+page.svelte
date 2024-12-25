@@ -1,8 +1,16 @@
 <script lang="ts">
 	import { codeToHtml, type BuiltinLanguage } from 'shiki';
-	import { toSvg } from 'html-to-image';
+	import { toPng, toSvg } from 'html-to-image';
 
-	let code = $state('');
+	let code = $state(`{#await data.posts}
+	<p class="italic font-mono">Loading posts ...</p>
+{:then posts}
+	<div class="flex flex-col gap-4">
+		{#each posts as post}
+			<Post {post} currentUserId={userId} />
+		{/each}
+	</div>
+{/await}`);
 	let lang = $state('typescript');
 
 	const htmlPromise = $derived(
